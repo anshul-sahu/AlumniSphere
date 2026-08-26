@@ -5,7 +5,7 @@ public class StudentProfileUpdateDto {
 	private Integer studentProfileId;
 	private String enrollmentNo;
 	private String yearOfAdmission;
-	private String resumeUrlPath;
+	private String aboutUs;
 	private String skill;
 	private Integer userId;
 	private Integer departmentId;
@@ -28,11 +28,11 @@ public class StudentProfileUpdateDto {
 	public void setYearOfAdmission(String yearOfAdmission) {
 		this.yearOfAdmission = yearOfAdmission;
 	}
-	public String getResumeUrlPath() {
-		return resumeUrlPath;
+	public String getAboutUs() {
+		return aboutUs;
 	}
-	public void setResumeUrlPath(String resumeUrlPath) {
-		this.resumeUrlPath = resumeUrlPath;
+	public void setAboutUs(String aboutUs) {
+		this.aboutUs = aboutUs;
 	}
 	public String getSkill() {
 		return skill;
@@ -56,7 +56,7 @@ public class StudentProfileUpdateDto {
 	@Override
 	public String toString() {
 		return "StudentProfileUpdateDto [studentProfileId=" + studentProfileId + ", enrollmentNo=" + enrollmentNo
-				+ ", yearOfAdmission=" + yearOfAdmission + ", resumeUrlPath=" + resumeUrlPath + ", skill=" + skill
+				+ ", yearOfAdmission=" + yearOfAdmission + ", resumeUrlPath=" + aboutUs + ", skill=" + skill
 				+ ", userId=" + userId + ", departmentId=" + departmentId + "]";
 	}
 	

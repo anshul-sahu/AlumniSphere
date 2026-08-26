@@ -1,133 +1,65 @@
-import { BrowserRouter, createBrowserRouter, Route, RouterProvider, Routes } from "react-router-dom"
-import Home from "./components/Home"
-import SignIn from "./components/SignIn"
-import SignUp from "./components/SignUp"
-import { Toaster } from "sonner";
-import About from "./components/About";
-import { AuthProvider } from "./context/AuthContext";
-import ProtectedRoute from "./routes/ProtectedRoute";
-import AlumniDashboard from "./components/private/alumni/AlumniDashboard";
-import StudentDashboard from "./components/private/student/StudentDashboard";
-import AdminDashboard from "./components/private/admin/AdminDashboard";
-import Alumni from "./components/private/admin/Alumni";
-import Student from "./components/private/admin/Student";
-import StudentViewProfile from "./components/private/student/StudentViewProfile";
-import StudentEditProfile from "./components/private/student/StudentEditProfile";
-import StudentCompleteProfile from "./components/auth/StudentCompleteProfile";
-import AlumniCompleteProfile from "./components/auth/AlumniCompleteProfile";
-import AlumniViewProfile from "./components/private/alumni/AlumniViewProfile";
-import AlumniStudent from "./components/private/alumni/AlumniStudent";
-import StudentAlumni from "./components/private/student/StudentAlumni";
-import UploadInternship from "./components/private/alumni/UploadInternship";
-import ViewInternship from "./components/private/student/ViewInternship";
-import AlumniMyInternships from "./components/private/alumni/AlumniMyInternship";
-function App() {
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from "./components/home/Home";
+import Navbar from "./components/navbar/Navbar";
+import SignIn from './components/signIn/SignIn';
+import SignUp from './components/signUp/SignUp.jsx';
+import StudentCompleteProfile from './components/students/StudentCompleteProfile.jsx';
+import AlumniCompleteProfile from './components/alumni/AlumniCompleteProfile.jsx';
+import StudentDashboard from './components/students/studentDashboard/StudentDashboard.jsx';
+import AlumniDashboard from './components/alumni/alumniDashboard/AlumniDashboard.jsx';
+import AdminDashboard from './components/admin/adminDashboard/AdminDashboard.jsx';
+import ProtectedRoute from './ProtectedRoute.jsx';
+import AlumniPermit from './components/admin/alumniPermit/AlumniPermit.jsx';
+
+const App = () =>{
   return (
-    <>
-      <AuthProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home/>} />
-            <Route path="/SignUp" element={<SignUp/>} />
-            <Route path="/SignIn" element={<SignIn/>} />
-            <Route path="/About" element={<About/>} />
+    <div>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/signIn' element={<SignIn />} />
+          <Route path='/signUp' element={<SignUp />} />
+          
+          
 
-            <Route path="/alumni/dashboard" 
-            element={
-              <ProtectedRoute allowedRoles={['ALUMNI']}>
-                <AlumniDashboard />
-              </ProtectedRoute>
-            } />
 
-            <Route path="/alumni/profile" 
-            element={
-              <ProtectedRoute allowedRoles={['ALUMNI']}>
-                <AlumniViewProfile />
-              </ProtectedRoute>
-            } />
-            <Route path="/alumni/students" 
-            element={
-              <ProtectedRoute allowedRoles={['ALUMNI']}>
-                <AlumniStudent />
-              </ProtectedRoute>
-            } />
-            <Route path="/alumni/internships" 
-            element={
-              <ProtectedRoute allowedRoles={['ALUMNI']}>
-                <UploadInternship />
-              </ProtectedRoute>
-            } />
-            <Route path="/alumni/uploadedIntern" 
-            element={
-              <ProtectedRoute allowedRoles={['ALUMNI']}>
-                <AlumniMyInternships />
-              </ProtectedRoute>
-            } />
+          <Route path='/Student/Profile/completion' element={<StudentCompleteProfile />} />
+          <Route path='/alumni/profile/completion' element={<AlumniCompleteProfile />} />
+          
 
-            <Route path="/student/dashboard"
-              element={
-                <ProtectedRoute allowedRoles={'STUDENT'}>
-                  <StudentDashboard/>
-                </ProtectedRoute>
-            }/>
-            <Route path="/student/profile"
-              element={
-                <ProtectedRoute allowedRoles={'STUDENT'}>
-                  <StudentViewProfile/>
-                </ProtectedRoute>
-            }/>
-            <Route path="/student/edit"
-              element={
-                <ProtectedRoute allowedRoles={'STUDENT'}>
-                  <StudentEditProfile/>
-                </ProtectedRoute>
-            }/>
-            <Route path="/student/alumni"
-              element={
-                <ProtectedRoute allowedRoles={'STUDENT'}>
-                  <StudentAlumni/>
-                </ProtectedRoute>
-            }/>
-            <Route path="/student/internships"
-              element={
-                <ProtectedRoute allowedRoles={'STUDENT'}>
-                  <ViewInternship/>
-                </ProtectedRoute>
-            }/>
+          {/* STUDENT PANEL */}
+          <Route element={<ProtectedRoute allowedRoles={['STUDENT']} />}>
 
-            <Route path="/student/complete_profile" 
-            element={<StudentCompleteProfile />} />
+          <Route path='/student/dashboard' element={<StudentDashboard />} />
+          
+          </Route>
 
-            <Route path="/alumni/complete_profile" 
-            element={<AlumniCompleteProfile />} />
-            
-            <Route path="/admin/dashboard"
-              element={
-                <ProtectedRoute allowedRoles={'ADMIN'}>
-                  <AdminDashboard/>
-                </ProtectedRoute>
-            }/>
-            <Route path="/admin/Alumni"
-              element={
-                <ProtectedRoute allowedRoles={'ADMIN'}>
-                  <Alumni/>
-                </ProtectedRoute>
-            }/>
-            <Route path="/admin/students"
-              element={
-                <ProtectedRoute allowedRoles={'ADMIN'}>
-                  <Student/>
-                </ProtectedRoute>
-            }/>
+          {/* ALUMNI PANEL */}
+          <Route element={<ProtectedRoute allowedRoles={['ALUMNI']} />}>
 
-          </Routes>
-        </BrowserRouter>
-      </AuthProvider>
-      <Toaster richColors position="top-right" />
+          <Route path='/alumni/dashboard' element={<AlumniDashboard />} />
+          
+          </Route>
+
+          {/* ADMIN PANEL */}
+          <Route element={<ProtectedRoute allowedRoles={['ADMIN']} />}>
+
+            <Route path='/admin/dashboard' element={<AdminDashboard />} />
+
+            <Route path='/admin/admit/alumni' element={<AlumniPermit />} />
+
+          </Route>
+        </Routes>
+        
       
-    </>
-  )
+      </BrowserRouter>
+    </div>
+  );
 }
 
-export default App
+export default App;

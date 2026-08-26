@@ -30,7 +30,7 @@ public class StudentProfileService {
 		StudentProfile studProf = studProfRepo.findById(studentProfileId).get();
 //		System.out.println(studentProfileId);
 		studProf.setEnrollmentNo(studProfUp.getEnrollmentNo());
-		studProf.setResumeUrlPath(studProfUp.getResumeUrlPath());
+		studProf.setAboutUs(studProfUp.getAboutUs());
 		studProf.setSkill(studProfUp.getSkill());
 		studProf.setDepartment(departRepo.findById(studProfUp.getDepartmentId()).get());
 //		studProf.setUser(new User(studProfUp.getUserId()));

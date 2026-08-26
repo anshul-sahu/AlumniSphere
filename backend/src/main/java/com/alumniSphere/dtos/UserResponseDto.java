@@ -13,8 +13,17 @@ public class UserResponseDto {
 	private Role role;
 	private Status status;
 	private LocalDate createdAt;
+	private String token;
 	
 	
+	public String getToken() {
+		return token;
+	}
+
+	public void setToken(String token) {
+		this.token = token;
+	}
+
 	public Integer getUserId() {
 		return userId;
 	}

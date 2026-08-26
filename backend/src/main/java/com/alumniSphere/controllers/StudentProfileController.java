@@ -1,5 +1,11 @@
 package com.alumniSphere.controllers;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,7 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.cors.CorsConfigurationSource;
 import com.alumniSphere.dtos.ApiResponse;
 import com.alumniSphere.dtos.StudentProfileDto;
 import com.alumniSphere.dtos.StudentProfileUpdateDto;
@@ -18,6 +24,7 @@ import jakarta.validation.Valid;
 
 @RestController
 public class StudentProfileController {
+
 	
 	private StudentProfileService studProfServ;
 	
@@ -39,10 +46,10 @@ public class StudentProfileController {
 	}
 	 
 	@PostMapping("/save_student/{userId}")
-	public ResponseEntity<ApiResponse> saveStudent(@Valid @RequestBody StudentProfileDto studDto,@PathVariable Integer userId) {
+	public ResponseEntity<ApiResponse> saveStudent(@Valid @RequestBody StudentProfileDto studDto,@PathVariable Integer userId){
 		StudentProfileDto stdDto = studProfServ.saveStudent(studDto, userId);
 		
-		if(stdDto != null) {
+		if(stdDto != null) {			
 			return new ResponseEntity<>(new ApiResponse(true, "student saved", stdDto), HttpStatus.OK);
 		}else {
 			return new ResponseEntity<>(new ApiResponse(false, "student not saved"), HttpStatus.INTERNAL_SERVER_ERROR);

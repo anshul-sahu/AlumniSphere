@@ -1,0 +1,78 @@
+.min-vh-75 {
+    min-height: 75vh;
+}
+
+.hero-section {
+    background: linear-gradient(135deg, #f8f9fa, #e9f2ff);
+}
+
+.hero-image {
+    max-height: 350px;
+    object-fit: contain;
+}
+
+.feature-card {
+    transition: 0.3s;
+    border-radius: 15px;
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+}
+
+.feature-icon {
+    font-size: 45px;
+}
+
+.step-number {
+    width: 60px;
+    height: 60px;
+    margin: auto;
+    border-radius: 50%;
+    background-color: #0d6efd;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.profile-placeholder {
+    width: 80px;
+    height: 80px;
+    margin: auto;
+    border-radius: 50%;
+    background-color: #e9ecef;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+}
+
+.ai-section {
+    background-color: #f8f9fa;
+}
+
+.resume-preview {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: left;
+}
+
+.resume-line {
+    height: 10px;
+    background-color: #dee2e6;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.resume-line.short {
+    width: 60%;
+}
+
+.cta-section {
+    background: #0d6efd;
+    color: white;
+}

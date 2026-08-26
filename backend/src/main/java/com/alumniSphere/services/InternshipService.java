@@ -67,7 +67,7 @@ public class InternshipService {
 				StudentInternDto stdInternDto = new StudentInternDto();
 				StudentProfile stdProf = stdProfRepo.findById(stdProfRepo.findStudentProfileIdByUserId(n.getUser().getUserId())).get();
 				stdInternDto.setEnrollmentNo(stdProf.getEnrollmentNo());
-				stdInternDto.setResumeUrlPath(stdProf.getResumeUrlPath());
+				stdInternDto.setResumeUrlPath(stdProf.getAboutUs());
 				dto.setStdInDto(stdInternDto);
 				
 				std.add(stdInApp);

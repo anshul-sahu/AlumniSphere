@@ -21,7 +21,7 @@ public class StudentProfile {
 	
 	private String yearOfAdmission;
 	
-	private String resumeUrlPath;
+	private String aboutUs;
 	
 	private String skill;
 	
@@ -57,12 +57,12 @@ public class StudentProfile {
 		this.yearOfAdmission = yearOfAdmission;
 	}
 
-	public String getResumeUrlPath() {
-		return resumeUrlPath;
+	public String getAboutUs() {
+		return aboutUs;
 	}
 
-	public void setResumeUrlPath(String resumeUrlPath) {
-		this.resumeUrlPath = resumeUrlPath;
+	public void setAboutUs(String aboutUs) {
+		this.aboutUs = aboutUs;
 	}
 
 	public String getSkill() {

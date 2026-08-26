@@ -30,7 +30,7 @@ public class AlumniProfileController {
 		return new ResponseEntity<>(new ApiResponse(true, "collected successfully", dto), HttpStatus.OK);
 	}
 	
-	@PostMapping("alumniProfile/{userId}")
+	@PostMapping("/alumniProfile/{userId}")
 	public ResponseEntity<ApiResponse> profileCompletion(@Valid @RequestBody AlumniProfileDto alumniProf,@PathVariable Integer userId) {
 		alumniProf.setUser(new User(userId));
 		AlumniProfileDto dto = alumProfServ.saveAlumniProfile(alumniProf); 
