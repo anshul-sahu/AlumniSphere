@@ -1,80 +1,20 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { api } from "../../api";
 import Sidebar from "../../sidebar/Sidebar";
 import { adminSidebarItems } from "../../sidebar/sidebarData";
 import { useNavigate } from "react-router-dom";
+import { collectStudent, approveStudent } from "./studentPermit";
 
-function AlumniPermit() {
-    const [alumni, setAlumni] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [approvingId, setApprovingId] = useState(null);
+function StudentPermit(){
 
     const token = localStorage.getItem("token");
+    const [student, setStudent] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [approvingId, setApprovingId] = useState();
     const navigate = useNavigate();
 
-     useEffect(() => {
-        axios
-            .get(`${api}/collect_all_alumni`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            })
-            .then((response) => {
-                // console.log(response.data);
-                setAlumni(response.data);
-            })
-            .catch((err) => {
-                console.log(err);
-
-                
-                    navigate("/signIn");
-                
-            })
-            .finally(() => {
-                setLoading(false);
-            });
-    }, []);
-
-    const approveAlumni = (userId) => {
-        setApprovingId(userId);
-
-        axios
-            .put(
-                `${api}/users/${userId}/approve`,
-                {},
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-            )
-            .then((response) => {
-                // console.log("User approved", response);
-
-                setAlumni((previousAlumni) =>
-                    previousAlumni.map((item) =>
-                        item.user.userId === userId
-                            ? {
-                                  ...item,
-                                  user: {
-                                      ...item.user,
-                                      status: "ACTIVE",
-                                  },
-                              }
-                            : item
-                    )
-                );
-            })
-            .catch((err) => {
-                console.log(err);
-
-                    navigate("/signIn");
-            })
-            .finally(() => {
-                setApprovingId(null);
-            });
-    };
+    useEffect(()=>{
+        collectStudent(setLoading, setStudent, token, navigate);
+    },[]);
 
     return (
         <div className="d-flex min-vh-100 bg-light">
@@ -83,7 +23,7 @@ function AlumniPermit() {
             <Sidebar items={adminSidebarItems} />
 
             {/* Main Content */}
-            <main className="flex-grow-1 p-3 p-md-4">
+             <main className="flex-grow-1 p-3 p-md-4">
 
                 <div className="container-fluid p-0">
 
@@ -96,11 +36,11 @@ function AlumniPermit() {
 
                                 <div>
                                     <h3 className="fw-bold mb-1">
-                                        Alumni Approval
+                                        Student Approval
                                     </h3>
 
                                     <p className="text-secondary mb-0">
-                                        Review and manage alumni registration requests.
+                                        Review and manage student registration requests.
                                     </p>
                                 </div>
 
@@ -108,7 +48,7 @@ function AlumniPermit() {
 
                                     <span className="badge text-bg-primary fs-6 px-3 py-2">
                                         <i className="bi bi-people-fill me-2"></i>
-                                        {alumni.length} Alumni
+                                        {student.length} Student
                                     </span>
 
                                 </div>
@@ -139,7 +79,7 @@ function AlumniPermit() {
 
                     {/* ================= Empty State ================= */}
 
-                    {!loading && alumni.length === 0 && (
+                    {!loading && student.length === 0 && (
 
                         <div className="card border-0 shadow-sm">
 
@@ -148,11 +88,11 @@ function AlumniPermit() {
                                 <i className="bi bi-people display-3 text-secondary"></i>
 
                                 <h4 className="mt-3">
-                                    No Alumni Found
+                                    No Student Found
                                 </h4>
 
                                 <p className="text-secondary mb-0">
-                                    There are currently no alumni records available.
+                                    There are currently no student records available.
                                 </p>
 
                             </div>
@@ -164,11 +104,11 @@ function AlumniPermit() {
 
                     {/* ================= Alumni Cards ================= */}
 
-                    {!loading && alumni.length > 0 && (
+                    {!loading && student.length > 0 && (
 
                         <div className="row g-4">
 
-                            {alumni.map((data) => (
+                            {student.map((data) => (
 
                                 <div
                                     className="col-12 col-lg-6"
@@ -270,13 +210,13 @@ function AlumniPermit() {
                                                     <div className="text-secondary small mb-1">
 
                                                         <i className="bi bi-geo-alt me-2"></i>
-                                                        Location
+                                                        Enrollment No
 
                                                     </div>
 
                                                     <div className="fw-semibold">
 
-                                                        {data.location || "-"}
+                                                        {data.enrollmentNo || "-"}
 
                                                     </div>
 
@@ -288,13 +228,13 @@ function AlumniPermit() {
                                                     <div className="text-secondary small mb-1">
 
                                                         <i className="bi bi-building me-2"></i>
-                                                        Current Company
+                                                        Skill
 
                                                     </div>
 
                                                     <div className="fw-semibold">
 
-                                                        {data.currentCompany || "-"}
+                                                        {data.skill || "-"}
 
                                                     </div>
 
@@ -306,13 +246,13 @@ function AlumniPermit() {
                                                     <div className="text-secondary small mb-1">
 
                                                         <i className="bi bi-briefcase me-2"></i>
-                                                        Current Position
+                                                        About them
 
                                                     </div>
 
                                                     <div className="fw-semibold">
 
-                                                        {data.currentPosition || "-"}
+                                                        {data.aboutUs || "-"}
 
                                                     </div>
 
@@ -342,13 +282,13 @@ function AlumniPermit() {
                                                     <div className="text-secondary small mb-1">
 
                                                         <i className="bi bi-calendar-event me-2"></i>
-                                                        Graduation Year
+                                                        Admission Year
 
                                                     </div>
 
                                                     <div className="fw-semibold">
 
-                                                        {data.graduationYear || "-"}
+                                                        {data.yearOfAdmission || "-"}
 
                                                     </div>
 
@@ -363,31 +303,7 @@ function AlumniPermit() {
 
                                                 <div className="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3">
 
-                                                    {/* Mentorship */}
-
-                                                    <div>
-
-                                                        {data.availableForMentornship ? (
-
-                                                            <span className="badge text-bg-info px-3 py-2">
-
-                                                                <i className="bi bi-person-heart me-2"></i>
-
-                                                                Available for Mentorship
-
-                                                            </span>
-
-                                                        ) : (
-
-                                                            <span className="badge text-bg-secondary px-3 py-2">
-
-                                                                Not Available for Mentorship
-
-                                                            </span>
-
-                                                        )}
-
-                                                    </div>
+                                                  
 
 
                                                     {/* Approve Button */}
@@ -398,9 +314,9 @@ function AlumniPermit() {
                                                         <button
                                                             className="btn btn-success px-4"
                                                             onClick={() =>
-                                                                approveAlumni(
+                                                                approveStudent(
                                                                     data.user
-                                                                        .userId
+                                                                        .userId,setApprovingId,setStudent, token, navigate
                                                                 )
                                                             }
                                                             disabled={
@@ -461,9 +377,9 @@ function AlumniPermit() {
                 </div>
 
             </main>
-
         </div>
-    );
-}
 
-export default AlumniPermit;
+    )
+};
+
+export default StudentPermit;

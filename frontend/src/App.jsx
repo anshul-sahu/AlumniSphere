@@ -14,6 +14,8 @@ import AlumniDashboard from './components/alumni/alumniDashboard/AlumniDashboard
 import AdminDashboard from './components/admin/adminDashboard/AdminDashboard.jsx';
 import ProtectedRoute from './ProtectedRoute.jsx';
 import AlumniPermit from './components/admin/alumniPermit/AlumniPermit.jsx';
+import StudentPermit from './components/admin/studentPermit/StudentPermit.jsx';
+import AdminProfile from './components/admin/profile/AdminProfile.jsx';
 
 const App = () =>{
   return (
@@ -52,6 +54,10 @@ const App = () =>{
             <Route path='/admin/dashboard' element={<AdminDashboard />} />
 
             <Route path='/admin/admit/alumni' element={<AlumniPermit />} />
+
+            <Route path='/admin/admit/student' element={<StudentPermit />} />
+
+            <Route path='/admin/profile' element={<AdminProfile />} />
 
           </Route>
         </Routes>

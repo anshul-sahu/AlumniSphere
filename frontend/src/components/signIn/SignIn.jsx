@@ -91,6 +91,7 @@ function SignIn() {
                 if(object.data.object.role){
                     localStorage.setItem("token", object.data.object.token);
                     localStorage.setItem("role", object.data.object.role);
+ 
                     dispatch(login({
                         token : object.data.object.token,
                         user : object.data

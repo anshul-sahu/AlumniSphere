@@ -12,13 +12,13 @@ export const adminSidebarItems = [
     },
     {
         title: "Permit Alumni",
-        icon: "bi-briefcase-fill",
+        icon: "bi-mortarboard-fill",
         path: "/admin/admit/alumni"
     },
     {
-        title: "Events",
-        icon: "bi-calendar-event-fill",
-        path: "/admin/events"
+        title: "Profile",
+        icon: "bi-person",
+        path: "/admin/profile"
     }
 ];
 

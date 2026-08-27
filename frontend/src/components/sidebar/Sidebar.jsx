@@ -64,7 +64,7 @@ function Sidebar({ items, title = "Dashboard" }) {
 
             {/* Logout */}
 
-            <div className="sidebar-logout p-3 border-top mt-auto">
+            {/* <div className="sidebar-logout p-3 border-top mt-auto">
 
                 <button className="btn btn-outline-danger w-100 logout-btn">
 
@@ -76,7 +76,7 @@ function Sidebar({ items, title = "Dashboard" }) {
 
                 </button>
 
-            </div>
+            </div> */}
 
         </aside>
     );

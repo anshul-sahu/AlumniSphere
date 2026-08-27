@@ -1,10 +1,21 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import { logout } from "../../redux/authSlice";
+import { Collapse } from "bootstrap";
 
 function Navbar() {
     const { isAuthenticated } = useSelector((state) => state.auth);
     let dispatch = useDispatch();
+
+    const closeNavbar = () => {
+        const navbar = document.getElementById("navbarSupportedContent");
+
+        if (navbar && navbar.classList.contains("show")) {
+            const bsCollapse = Collapse.getOrCreateInstance(navbar);
+            bsCollapse.hide();
+        }
+    };
+
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-2">
             <div className="container">
@@ -42,7 +53,7 @@ function Navbar() {
                         <li className="nav-item mx-lg-2">
                             <NavLink
                                 className="nav-link  fw-semibold"
-                                to="/"
+                                to="/" onClick={closeNavbar}
                             >
                                 <i className="bi bi-house-fill me-1"></i>
                                 Home
@@ -53,6 +64,7 @@ function Navbar() {
                             <NavLink
                                 className="nav-link"
                                 to="/about"
+                                onClick={closeNavbar}
                             >
                                 <i className="bi bi-people-fill me-1"></i>
                                 About Us
@@ -63,6 +75,7 @@ function Navbar() {
                             <NavLink
                                 className="nav-link"
                                 to="/contact"
+                                onClick={closeNavbar}
                             >
                                 <i className="bi bi-telephone-fill me-1"></i>
                                 Contact
@@ -75,8 +88,9 @@ function Navbar() {
                     <div className="d-flex gap-2">
                         {
                             isAuthenticated && <Link
-                                to="/signIn" onClick={()=>dispatch(logout())}
-                                className="btn btn-outline-primary" 
+                                to="/signIn" onClick={() => dispatch(logout())}
+                                className="btn btn-outline-primary"
+                                
                             >
                                 Logout
                             </Link>
@@ -87,7 +101,7 @@ function Navbar() {
                             <>
                                 <Link
                                     to="/signUp"
-                                    className="btn btn-outline-primary"
+                                    className="btn btn-outline-primary" onClick={closeNavbar}
                                 >
                                     <i class="bi bi-box-arrow-in-left"></i> Sign Up
                                 </Link>
@@ -95,8 +109,9 @@ function Navbar() {
                                 <Link
                                     to="/signIn"
                                     className="btn btn-outline-primary"
+                                    onClick={closeNavbar}
                                 >
-                                   <i class="bi bi-box-arrow-in-left"></i> Sign In
+                                    <i class="bi bi-box-arrow-in-left"></i> Sign In
                                 </Link>
                             </>
                         }

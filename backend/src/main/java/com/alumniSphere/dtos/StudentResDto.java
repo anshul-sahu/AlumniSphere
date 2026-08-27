@@ -5,7 +5,7 @@ import com.alumniSphere.entities.User;
 public class StudentResDto {
 	private String enrollmentNo;
 	private String yearOfAdmission;
-	private String resumeUrlPath;
+	private String aboutUs;
 	private String skill;
 	private User user;
 	private String departmentName;
@@ -21,11 +21,11 @@ public class StudentResDto {
 	public void setYearOfAdmission(String yearOfAdmission) {
 		this.yearOfAdmission = yearOfAdmission;
 	}
-	public String getResumeUrlPath() {
-		return resumeUrlPath;
+	public String getAboutUs() {
+		return aboutUs;
 	}
-	public void setResumeUrlPath(String resumeUrlPath) {
-		this.resumeUrlPath = resumeUrlPath;
+	public void setAboutUs(String aboutUs) {
+		this.aboutUs = aboutUs;
 	}
 	public String getSkill() {
 		return skill;
