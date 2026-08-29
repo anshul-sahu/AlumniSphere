@@ -17,6 +17,7 @@ import com.alumniSphere.entities.AlumniProfile;
 import com.alumniSphere.entities.ApplicationStatus;
 import com.alumniSphere.entities.Internship;
 import com.alumniSphere.entities.InternshipApplication;
+import com.alumniSphere.entities.InternshipStatus;
 import com.alumniSphere.entities.StudentProfile;
 import com.alumniSphere.entities.User;
 import com.alumniSphere.repos.AlumniProfileRepo;
@@ -108,6 +109,7 @@ public class InternshipService {
 		Integer alumniProfileId = alumnProfRepo.findAlumniProfileIdByUserId(userId);
 		Internship intern = new Internship();
 		BeanUtils.copyProperties(dto, intern);
+		intern.setStatus(InternshipStatus.ACTIVE);
 		intern.setAlumni(new AlumniProfile(alumniProfileId));
 		intern.setCreatedAt(LocalDate.now());
 		intern.setApplyDeadline(LocalDate.parse(dto.getApplyDeadline()));

@@ -31,14 +31,14 @@ export const alumniSidebarItems = [
         path: "/alumni/dashboard"
     },
     {
-        title: "My Profile",
-        icon: "bi-person-circle",
-        path: "/alumni/profile"
+        title: "Upload Internship",
+        icon: " bi-cloud-arrow-up",
+        path: "/alumni/uploadInternship"
     },
     {
-        title: "Jobs",
-        icon: "bi-briefcase-fill",
-        path: "/alumni/jobs"
+        title: "Uploaded Internship",
+        icon: " bi-check-circle",
+        path: "/alumni/uploadedInternship"
     },
     {
         title: "Mentorship",
@@ -56,18 +56,18 @@ export const studentSidebarItems = [
         path: "/student/dashboard"
     },
     {
+        title: "Internship",
+        icon: "bi-briefcase-fill",
+        path: "/student/internship"
+    },
+    {
+        title: "View Alumni",
+        icon: "bi-person-hearts",
+        path: "/student/view/alumni"
+    },
+    {
         title: "My Profile",
         icon: "bi-person-circle",
         path: "/student/profile"
-    },
-    {
-        title: "Jobs",
-        icon: "bi-briefcase-fill",
-        path: "/student/jobs"
-    },
-    {
-        title: "Find Mentor",
-        icon: "bi-person-hearts",
-        path: "/student/mentorship"
     }
 ];

@@ -1,11 +1,5 @@
 package com.alumniSphere.controllers;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,8 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.cors.CorsConfigurationSource;
 import com.alumniSphere.dtos.ApiResponse;
+import com.alumniSphere.dtos.StudentInternshipStatusDto;
 import com.alumniSphere.dtos.StudentProfileDto;
 import com.alumniSphere.dtos.StudentProfileUpdateDto;
 import com.alumniSphere.services.StudentProfileService;
@@ -30,6 +24,12 @@ public class StudentProfileController {
 	
 	public StudentProfileController(StudentProfileService studProfServ) {
 		this.studProfServ = studProfServ;
+	}
+	
+	@GetMapping("/student_applied_internship/{userId}")
+	public ResponseEntity<ApiResponse> collectAppliedInternship(@PathVariable("userId") String userId){
+		
+		return new ResponseEntity<>(new ApiResponse(false, "applied succesfully",null),HttpStatus.OK);
 	}
 	
 	@PutMapping("/update_student")

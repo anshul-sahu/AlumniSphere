@@ -16,8 +16,12 @@ import ProtectedRoute from './ProtectedRoute.jsx';
 import AlumniPermit from './components/admin/alumniPermit/AlumniPermit.jsx';
 import StudentPermit from './components/admin/studentPermit/StudentPermit.jsx';
 import AdminProfile from './components/admin/profile/AdminProfile.jsx';
+import UploadInternship from './components/alumni/uploadInternship/UploadInternship.jsx';
+import Uploaded from './components/alumni/uploaded/Uploaded.jsx';
+import Internship from './components/students/internship/Internship.jsx';
+import ShowAlumni from './components/students/show_alumni/ShowAlumni.jsx';
 
-const App = () =>{
+const App = () => {
   return (
     <div>
       <BrowserRouter>
@@ -26,26 +30,33 @@ const App = () =>{
           <Route path='/' element={<Home />} />
           <Route path='/signIn' element={<SignIn />} />
           <Route path='/signUp' element={<SignUp />} />
-          
-          
+
+
 
 
           <Route path='/Student/Profile/completion' element={<StudentCompleteProfile />} />
           <Route path='/alumni/profile/completion' element={<AlumniCompleteProfile />} />
-          
+
 
           {/* STUDENT PANEL */}
           <Route element={<ProtectedRoute allowedRoles={['STUDENT']} />}>
 
-          <Route path='/student/dashboard' element={<StudentDashboard />} />
-          
+            <Route path='/student/dashboard' element={<StudentDashboard />} />
+
+            <Route path='/student/internship' element={<Internship />} />
+
+            <Route path='/student/view/alumni' element={<ShowAlumni />} />
+
           </Route>
 
           {/* ALUMNI PANEL */}
           <Route element={<ProtectedRoute allowedRoles={['ALUMNI']} />}>
 
-          <Route path='/alumni/dashboard' element={<AlumniDashboard />} />
-          
+            <Route path='/alumni/dashboard' element={<AlumniDashboard />} />
+
+            <Route path='/alumni/uploadInternship' element={<UploadInternship />} />
+
+            <Route path='/alumni/uploadedInternship' element={<Uploaded />} />
           </Route>
 
           {/* ADMIN PANEL */}
@@ -61,8 +72,8 @@ const App = () =>{
 
           </Route>
         </Routes>
-        
-      
+
+
       </BrowserRouter>
     </div>
   );
