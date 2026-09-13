@@ -20,6 +20,12 @@ import UploadInternship from './components/alumni/uploadInternship/UploadInterns
 import Uploaded from './components/alumni/uploaded/Uploaded.jsx';
 import Internship from './components/students/internship/Internship.jsx';
 import ShowAlumni from './components/students/show_alumni/ShowAlumni.jsx';
+import AiResumeDashboard from './components/ai_resume/AiResumeDashboard.jsx';
+import ContentPreview from './components/ai_resume/ContentPreview.jsx';
+import ResumePreview from './components/ai_resume/ResumePreview.jsx';
+import Profile from './components/students/profile/Profile.jsx';
+import Chatbot from './components/chatbot/Chatbot.jsx';
+import AppliedInternship from './components/students/applied_internship/AppliedInternship.jsx';
 
 const App = () => {
   return (
@@ -37,6 +43,7 @@ const App = () => {
           <Route path='/Student/Profile/completion' element={<StudentCompleteProfile />} />
           <Route path='/alumni/profile/completion' element={<AlumniCompleteProfile />} />
 
+          <Route path="/chatbot" element={<Chatbot />} />
 
           {/* STUDENT PANEL */}
           <Route element={<ProtectedRoute allowedRoles={['STUDENT']} />}>
@@ -46,6 +53,16 @@ const App = () => {
             <Route path='/student/internship' element={<Internship />} />
 
             <Route path='/student/view/alumni' element={<ShowAlumni />} />
+
+            <Route path='/student/ai/resume_builder' element={<AiResumeDashboard />} />
+
+            <Route path='/student/ai/resume/content' element={<ContentPreview />} />
+
+            <Route path='/student/ai/resume/preview' element={<ResumePreview />} />
+
+            <Route path='/student/profile' element={<Profile />} />
+
+            <Route path='/student/applied/internship' element={<AppliedInternship />} />
 
           </Route>
 

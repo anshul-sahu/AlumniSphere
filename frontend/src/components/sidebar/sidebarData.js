@@ -50,24 +50,45 @@ export const alumniSidebarItems = [
 
 export const studentSidebarItems = [
 
-    {
+     {
         title: "Dashboard",
         icon: "bi-speedometer2",
         path: "/student/dashboard"
     },
+
     {
         title: "Internship",
-        icon: "bi-briefcase-fill",
+        icon: "bi-search",
         path: "/student/internship"
     },
+
+    {
+        title: "Applied Internship",
+        icon: "bi-file-earmark-check",
+        path: "/student/applied/internship"
+    },
+
     {
         title: "View Alumni",
-        icon: "bi-person-hearts",
+        icon: "bi-people-fill",
         path: "/student/view/alumni"
     },
+
+    {
+        title: "AI Resume Builder",
+        icon: "bi-file-earmark-person",
+        path: "/student/ai/resume_builder"
+    },
+
+    {
+        title: "AI Chatbot",
+        icon: "bi-chat-dots-fill",
+        path: "/chatbot"
+    },
+
     {
         title: "My Profile",
         icon: "bi-person-circle",
         path: "/student/profile"
     }
-];
+]
